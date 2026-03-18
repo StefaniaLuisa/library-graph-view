@@ -1,12 +1,11 @@
 import { useState, useMemo, useCallback } from 'react';
 import { Network, LayoutGrid, Sun, Moon } from 'lucide-react';
-import ConstellationGraph from './components/ConstellationGraph';
+import NetworkGraph from './components/NetworkGraph';
 import BookInspector from './components/BookInspector';
 import BookDetailModal from './components/BookDetailModal';
 import BookListView from './components/BookListView';
 import SearchFilter from './components/SearchFilter';
 import { BOOKS } from './data/books';
-import { PILLAR_COLORS } from './utils/pillars';
 import type { Book, Pillar, SecondaryCategory } from './types/book';
 import './App.css';
 
@@ -74,8 +73,6 @@ export default function App() {
   // Inspector shows pinned book (click) or hovering book
   const inspectorBook = inspectedBook ?? hoveredBook;
 
-  const graphBgColor = theme === 'dark' ? '#080b14' : '#f5f0e8';
-
   return (
     <div data-theme={theme}>
       {/* Header */}
@@ -130,27 +127,13 @@ export default function App() {
         <main className="graph-area">
           {view === 'constellation' ? (
             <>
-              <ConstellationGraph
+              <NetworkGraph
                 books={filteredBooks}
                 selectedPillar={selectedPillar}
                 onSelectBook={handleSelectBook}
-                hoveredBook={hoveredBook}
                 onHoverBook={handleHoverBook}
-                bgColor={graphBgColor}
+                theme={theme}
               />
-              {/* Pillar legend */}
-              <div className="legend">
-                {Object.entries(PILLAR_COLORS).map(([pillar, color]) => (
-                  <div key={pillar} className="legend-item">
-                    <span className="legend-dot" style={{ background: color }} />
-                    {pillar}
-                  </div>
-                ))}
-                <div className="legend-item" style={{ borderLeft: '1px solid var(--border)', paddingLeft: 12 }}>
-                  <span style={{ fontSize: 13, marginRight: 4 }}>✦</span>
-                  Core/Essentials
-                </div>
-              </div>
             </>
           ) : (
             <BookListView

@@ -8,3 +8,10 @@
   border-inline: none;
   text-align: left;
 }
+
+/* The data-theme wrapper must fill the full viewport height */
+[data-theme] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
