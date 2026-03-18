@@ -1,0 +1,10 @@
+/* App.css — all layout-level overrides */
+
+/* Reset the #root styles from index.css for this full-bleed app */
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  border-inline: none;
+  text-align: left;
+}
